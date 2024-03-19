@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(compareIntent);
             }
         });
-
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(orderIntent);
             }
         });
-
         composeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

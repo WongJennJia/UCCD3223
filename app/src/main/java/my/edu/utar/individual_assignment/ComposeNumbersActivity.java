@@ -1,6 +1,8 @@
 package my.edu.utar.individual_assignment;
 
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Random;
 
@@ -74,6 +77,19 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                 }
             }
         }
+
+
+
+        int defaultBoxColor = ContextCompat.getColor(this, R.color.default_box_color);
+        number1TextView.setBackgroundColor(defaultBoxColor);
+        number1TextView.setEnabled(true);
+        number2TextView.setBackgroundColor(defaultBoxColor);
+        number2TextView.setEnabled(true);
+        number3TextView.setBackgroundColor(defaultBoxColor);
+        number3TextView.setEnabled(true);
+        clickedNumber = 0;
+        checkButton.setEnabled(true);
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +101,8 @@ public class ComposeNumbersActivity extends AppCompatActivity {
         number2TextView = findViewById(R.id.number2_text);
         number3TextView = findViewById(R.id.number3_text);
         checkButton = findViewById(R.id.check_button);
+        Button nextButton = findViewById(R.id.next_button);
+        Button backToMenuButton = findViewById(R.id.back_to_menu_button);
 
         generateProblem();
 
@@ -92,6 +110,8 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
+                number1TextView.setBackgroundColor(Color.GRAY);
+                number1TextView.setEnabled(false);
                 clickedNumber += selectedNumber; // Update clickedNumber
             }
         });
@@ -101,6 +121,8 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
+                number2TextView.setBackgroundColor(Color.GRAY);
+                number2TextView.setEnabled(false);
                 clickedNumber += selectedNumber; // Update clickedNumber
             }
         });
@@ -109,6 +131,8 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
+                number3TextView.setBackgroundColor(Color.GRAY);
+                number3TextView.setEnabled(false);
                 clickedNumber += selectedNumber; // Update clickedNumber
             }
         });
@@ -129,13 +153,32 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                 // Display toast message based on isCorrect
                 if (isCorrect) {
                     Toast.makeText(ComposeNumbersActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+                    number1TextView.setEnabled(false);
+                    number2TextView.setEnabled(false);
+                    number3TextView.setEnabled(false);
+                    checkButton.setEnabled(false);
                 } else {
                     Toast.makeText(ComposeNumbersActivity.this, "Try again!", Toast.LENGTH_SHORT).show();
+                    number1TextView.setBackgroundColor(Color.WHITE);
+                    number1TextView.setEnabled(true);
+                    number2TextView.setBackgroundColor(Color.WHITE);
+                    number2TextView.setEnabled(true);
+                    number3TextView.setBackgroundColor(Color.WHITE);
+                    number3TextView.setEnabled(true);
+                    clickedNumber = 0;
                 }
             }
         });
 
+        // Set click listener for next button
+        nextButton.setOnClickListener(v -> generateProblem());
 
+        // Set click listener for back to menu button
+        backToMenuButton.setOnClickListener(v -> {
+            // Launch Menu Activity
+            Intent menuIntent = new Intent(ComposeNumbersActivity.this, MainActivity.class);
+            startActivity(menuIntent);
+        });
     }
 
 

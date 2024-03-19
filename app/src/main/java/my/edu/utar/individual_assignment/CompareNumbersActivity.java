@@ -23,7 +23,6 @@ public class CompareNumbersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compare_numbers); // Replace with your actual layout resource
 
         // Find UI elements by their IDs
-        //instructionText = findViewById(R.id.instruction_text);
         number1Text = findViewById(R.id.number1_text);
         number2Text = findViewById(R.id.number2_text);
         Button nextButton = findViewById(R.id.next_button);
@@ -67,10 +66,13 @@ public class CompareNumbersActivity extends AppCompatActivity {
     private void checkAnswer(int chosenNumber) {
         if (chosenNumber == correctAnswer) {
             // Correct answer
+            // Change text color of chosen number to green
+            TextView clickedTextView = (TextView) findViewById(chosenNumber == Integer.parseInt(number1Text.getText().toString()) ? R.id.number1_text : R.id.number2_text);
+            clickedTextView.setTextColor(Color.GREEN);
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
         } else {
             // Incorrect answer
-            Toast.makeText(this, "Try Again!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Try Again!, This one is smaller", Toast.LENGTH_SHORT).show();
             // Change text color of chosen number to red
             TextView clickedTextView = (TextView) findViewById(chosenNumber == Integer.parseInt(number1Text.getText().toString()) ? R.id.number1_text : R.id.number2_text);
             clickedTextView.setTextColor(Color.RED);
