@@ -1,7 +1,6 @@
 package my.edu.utar.individual_assignment;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,11 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class OrderNumbersActivity extends AppCompatActivity {
@@ -27,14 +23,12 @@ public class OrderNumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_numbers); // Replace with your layout resource ID
+        setContentView(R.layout.activity_order_numbers);
 
         generatedNumbers = generateNumbers();
         userArrangement = new ArrayList<>();
         Button backToMenuButton = findViewById(R.id.back_to_menu_button);
 
-
-        // (implementation omitted for brevity)
         chosenOrder = null; // Initially no order chosen
 
         // Set up UI elements to display generated numbers and order selection buttons
@@ -70,8 +64,7 @@ public class OrderNumbersActivity extends AppCompatActivity {
         });
 
         // Implement click listeners for each generated number
-
-        arrangementTextView = findViewById(R.id.arrangement_text_view); // Replace with TextView ID
+        arrangementTextView = findViewById(R.id.arrangement_text_view);
         number1.setOnClickListener(this::handleNumberClick);
         number2.setOnClickListener(this::handleNumberClick);
         number3.setOnClickListener(this::handleNumberClick);
@@ -81,13 +74,10 @@ public class OrderNumbersActivity extends AppCompatActivity {
         checkButton.setOnClickListener(this::checkArrangement);
 
         // Set click listener for back to menu button
-        backToMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Launch Menu Activity
-                Intent menuIntent = new Intent(OrderNumbersActivity.this, MainActivity.class);
-                startActivity(menuIntent);
-            }
+        backToMenuButton.setOnClickListener(v -> {
+            // Launch Menu Activity
+            Intent menuIntent = new Intent(OrderNumbersActivity.this, MainActivity.class);
+            startActivity(menuIntent);
         });
     }
     private List<Integer> generateNumbers() {
@@ -101,7 +91,6 @@ public class OrderNumbersActivity extends AppCompatActivity {
     private void setOrder(String order) {
         chosenOrder = order;
     }
-
     public void handleNumberClick(View view) {
         int number = Integer.parseInt(((TextView) view).getText().toString());
         if (userArrangement.size() < 4) { // Allow selection only if less than 4 chosen
@@ -129,7 +118,7 @@ public class OrderNumbersActivity extends AppCompatActivity {
         if (chosenOrder.equals("ascending")) {
             Collections.sort(sortedNumbers);
         } else {
-            Collections.sort(sortedNumbers, Collections.reverseOrder());
+            sortedNumbers.sort(Collections.reverseOrder());
         }
 
         boolean isCorrect = userArrangement.equals(sortedNumbers);
@@ -140,7 +129,5 @@ public class OrderNumbersActivity extends AppCompatActivity {
                 : "Oops! The arrangement is not correct.";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
-
 }
 

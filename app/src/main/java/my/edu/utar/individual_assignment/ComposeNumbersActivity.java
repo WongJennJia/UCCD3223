@@ -4,7 +4,6 @@ package my.edu.utar.individual_assignment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +22,6 @@ public class ComposeNumbersActivity extends AppCompatActivity {
     private TextView number3TextView;
     private Button checkButton;
     private int targetNumber;
-    private int[] otherNumbers = new int[3]; // Store generated numbers for answer checking
     private int clickedNumber = 0; // Variable to store user-selected number
 
     public static int generateTargetNumber() {
@@ -51,7 +49,8 @@ public class ComposeNumbersActivity extends AppCompatActivity {
     }
     public void generateProblem() {
         targetNumber = generateTargetNumber();
-        otherNumbers = generateOtherNumbers(targetNumber);
+        // Store generated numbers for answer checking
+        int[] otherNumbers = generateOtherNumbers(targetNumber);
         String[] otherNumberString = new String[3];
 
         // Convert integer targetNumber to String
@@ -77,8 +76,6 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                 }
             }
         }
-
-
 
         int defaultBoxColor = ContextCompat.getColor(this, R.color.default_box_color);
         number1TextView.setBackgroundColor(defaultBoxColor);
@@ -106,67 +103,52 @@ public class ComposeNumbersActivity extends AppCompatActivity {
 
         generateProblem();
 
-        number1TextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
-                number1TextView.setBackgroundColor(Color.GRAY);
-                number1TextView.setEnabled(false);
-                clickedNumber += selectedNumber; // Update clickedNumber
-            }
+        number1TextView.setOnClickListener(v -> {
+            int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
+            number1TextView.setBackgroundColor(Color.GRAY);
+            number1TextView.setEnabled(false);
+            clickedNumber += selectedNumber; // Update clickedNumber
         });
 
         // Similar click listeners for number2TextView and number3TextView
-        number2TextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
-                number2TextView.setBackgroundColor(Color.GRAY);
-                number2TextView.setEnabled(false);
-                clickedNumber += selectedNumber; // Update clickedNumber
-            }
+        number2TextView.setOnClickListener(v -> {
+            int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
+            number2TextView.setBackgroundColor(Color.GRAY);
+            number2TextView.setEnabled(false);
+            clickedNumber += selectedNumber; // Update clickedNumber
         });
 
-        number3TextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
-                number3TextView.setBackgroundColor(Color.GRAY);
-                number3TextView.setEnabled(false);
-                clickedNumber += selectedNumber; // Update clickedNumber
-            }
+        number3TextView.setOnClickListener(v -> {
+            int selectedNumber = Integer.parseInt(((TextView) v).getText().toString());
+            number3TextView.setBackgroundColor(Color.GRAY);
+            number3TextView.setEnabled(false);
+            clickedNumber += selectedNumber; // Update clickedNumber
         });
-        checkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (clickedNumber == 0) {
-                    Toast.makeText(ComposeNumbersActivity.this, "Please select a number!", Toast.LENGTH_SHORT).show();
-                    return;
+        checkButton.setOnClickListener(v -> {
+            if (clickedNumber == 0) {
+                Toast.makeText(ComposeNumbersActivity.this, "Please select a number!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            boolean isCorrect = false;
+            if (clickedNumber == targetNumber) {
+                    isCorrect = true;
                 }
-                boolean isCorrect = false;
-                //for (int otherNumber : otherNumbers) {
-                if (clickedNumber == targetNumber) {
-                        isCorrect = true;
-                        //break;
-                    }
-                //}
-                // Display toast message based on isCorrect
-                if (isCorrect) {
-                    Toast.makeText(ComposeNumbersActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
-                    number1TextView.setEnabled(false);
-                    number2TextView.setEnabled(false);
-                    number3TextView.setEnabled(false);
-                    checkButton.setEnabled(false);
-                } else {
-                    Toast.makeText(ComposeNumbersActivity.this, "Try again!", Toast.LENGTH_SHORT).show();
-                    number1TextView.setBackgroundColor(Color.WHITE);
-                    number1TextView.setEnabled(true);
-                    number2TextView.setBackgroundColor(Color.WHITE);
-                    number2TextView.setEnabled(true);
-                    number3TextView.setBackgroundColor(Color.WHITE);
-                    number3TextView.setEnabled(true);
-                    clickedNumber = 0;
-                }
+            // Display toast message based on isCorrect
+            if (isCorrect) {
+                Toast.makeText(ComposeNumbersActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+                number1TextView.setEnabled(false);
+                number2TextView.setEnabled(false);
+                number3TextView.setEnabled(false);
+                checkButton.setEnabled(false);
+            } else {
+                Toast.makeText(ComposeNumbersActivity.this, "Try again!", Toast.LENGTH_SHORT).show();
+                number1TextView.setBackgroundColor(Color.WHITE);
+                number1TextView.setEnabled(true);
+                number2TextView.setBackgroundColor(Color.WHITE);
+                number2TextView.setEnabled(true);
+                number3TextView.setBackgroundColor(Color.WHITE);
+                number3TextView.setEnabled(true);
+                clickedNumber = 0;
             }
         });
 
@@ -180,12 +162,4 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             startActivity(menuIntent);
         });
     }
-
-
-
-
-
-
-
-
 }
