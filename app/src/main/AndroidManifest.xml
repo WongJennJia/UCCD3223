@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CompareNumbersActivity" />
+        <activity
+            android:name=".OrderNumbersActivity" />
+        <activity
+            android:name=".ComposeNumbersActivity" />
     </application>
 
 </manifest>

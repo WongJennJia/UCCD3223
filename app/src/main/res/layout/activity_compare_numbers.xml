@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/instruction_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Which number is greater? Tap the answer."
+        android:textSize="20sp"
+        android:gravity="center"
+        android:background="@drawable/default_number_box"/>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/number1_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/default_number_box"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/number2_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="456"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/default_number_box"/>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/back_to_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Menu"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/back_button_background" />
+
+</LinearLayout>
