@@ -1,46 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="339dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Math For Children!"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:gravity="center" />
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="20dp" />
 
     <Button
         android:id="@+id/compare_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Compare Numbers" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="10dp" />
+        android:text="Compare Numbers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Order Numbers" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="10dp" />
+        android:text="Order Numbers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/compose_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Compose Numbers" />
+        android:text="Compose Numbers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529"
+        tools:layout_editor_absoluteX="16dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

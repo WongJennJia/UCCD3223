@@ -81,7 +81,7 @@ public class OrderNumbersActivity extends AppCompatActivity {
     private List<Integer> generateNumbers() {
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            numbers.add((int) (Math.random() * 100) + 1); // Generate random numbers between 1-100
+            numbers.add((int) (Math.random() * 1000)); // Generate random numbers between 1-999
         }
         return numbers;
     }
