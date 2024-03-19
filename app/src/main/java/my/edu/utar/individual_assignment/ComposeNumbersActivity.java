@@ -49,28 +49,12 @@ public class ComposeNumbersActivity extends AppCompatActivity {
     public void generateProblem() {
         targetNumber = generateTargetNumber();
         otherNumbers = generateOtherNumbers(targetNumber);
+        String[] otherNumberString = new String[3];
 
         // Convert integer targetNumber to String
         String targetNumberString = String.valueOf(targetNumber);
         targetNumberTextView.setText(targetNumberString);
 
-        // Convert otherNumber to String and assign to textview
-        //String otherNumberString1 = String.valueOf(otherNumbers[0]);
-        String[] otherNumberString = new String[3];
-
-        //otherNumberString[1] = String.valueOf(otherNumbers[1]);
-        //number1TextView.setText(otherNumberString1);
-        //number2TextView.setText(otherNumberString[1]);
-
-        /*
-        // Loop through otherNumberString array to set TextViews
-        for (int i = 0; i < otherNumbers.length; i++) {
-            if (otherNumbers[i] != 0) {
-                otherNumberString[i] = String.valueOf(otherNumbers[i]);
-                number1TextView.setText(otherNumbers[i]);
-            }
-        }
-         */
         // Loop through otherNumberString array to set TextViews
         for (int i = 0; i < otherNumbers.length; i++) {
             if (otherNumbers[i] != 0) {
@@ -87,7 +71,6 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                         otherNumberString[i] = String.valueOf(otherNumbers[i]);
                         number3TextView.setText(otherNumberString[i]);
                         break;
-                    // Add more cases if needed
                 }
             }
         }
@@ -103,15 +86,6 @@ public class ComposeNumbersActivity extends AppCompatActivity {
         number3TextView = findViewById(R.id.number3_text);
         checkButton = findViewById(R.id.check_button);
 
-
-/*
-        number1TextView.setClickable(true);
-        number2TextView.setClickable(true);
-        number3TextView.setClickable(true);
-
-*/
-
-        //generateTargetNumber();
         generateProblem();
 
         number1TextView.setOnClickListener(new View.OnClickListener() {
@@ -138,9 +112,6 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                 clickedNumber += selectedNumber; // Update clickedNumber
             }
         });
-
-
-
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +126,7 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                         //break;
                     }
                 //}
-
+                // Display toast message based on isCorrect
                 if (isCorrect) {
                     Toast.makeText(ComposeNumbersActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -163,11 +134,10 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                 }
             }
         });
-                // Display toast message based on isCorrect
+
 
     }
 
-    //generateTargetNumber()
 
 
 

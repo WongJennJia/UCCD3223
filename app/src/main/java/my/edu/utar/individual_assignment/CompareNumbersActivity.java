@@ -15,8 +15,6 @@ public class CompareNumbersActivity extends AppCompatActivity {
     //private TextView instructionText;
     private TextView number1Text;
     private TextView number2Text;
-    private Button nextButton;
-    private Button backToMenuButton;
     private int correctAnswer;
 
     @Override
@@ -28,42 +26,24 @@ public class CompareNumbersActivity extends AppCompatActivity {
         //instructionText = findViewById(R.id.instruction_text);
         number1Text = findViewById(R.id.number1_text);
         number2Text = findViewById(R.id.number2_text);
-        nextButton = findViewById(R.id.next_button);
-        backToMenuButton = findViewById(R.id.back_to_menu_button);
+        Button nextButton = findViewById(R.id.next_button);
+        Button backToMenuButton = findViewById(R.id.back_to_menu_button);
         // Generate random numbers
         generateNumbers();
 
         // Set click listeners for number TextViews
-        number1Text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswer(Integer.parseInt(number1Text.getText().toString()));
-            }
-        });
+        number1Text.setOnClickListener(v -> checkAnswer(Integer.parseInt(number1Text.getText().toString())));
 
-        number2Text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswer(Integer.parseInt(number2Text.getText().toString()));
-            }
-        });
+        number2Text.setOnClickListener(v -> checkAnswer(Integer.parseInt(number2Text.getText().toString())));
 
         // Set click listener for next button
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generateNumbers();
-            }
-        });
+        nextButton.setOnClickListener(v -> generateNumbers());
 
         // Set click listener for back to menu button
-        backToMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Launch Menu Activity
-                Intent menuIntent = new Intent(CompareNumbersActivity.this, MainActivity.class);
-                startActivity(menuIntent);
-            }
+        backToMenuButton.setOnClickListener(v -> {
+            // Launch Menu Activity
+            Intent menuIntent = new Intent(CompareNumbersActivity.this, MainActivity.class);
+            startActivity(menuIntent);
         });
     }
 

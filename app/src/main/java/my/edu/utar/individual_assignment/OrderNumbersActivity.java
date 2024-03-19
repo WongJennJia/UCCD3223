@@ -67,15 +67,13 @@ public class OrderNumbersActivity extends AppCompatActivity {
         // Implement click listeners for generated numbers
 
         arrangementTextView = findViewById(R.id.arrangement_text_view); // Replace with TextView ID
-        number1.setOnClickListener(arrangementTextView -> handleNumberClick(arrangementTextView));
-        number2.setOnClickListener(arrangementTextView -> handleNumberClick(arrangementTextView));
-        number3.setOnClickListener(arrangementTextView -> handleNumberClick(arrangementTextView));
-        number4.setOnClickListener(arrangementTextView -> handleNumberClick(arrangementTextView));
+        number1.setOnClickListener(this::handleNumberClick);
+        number2.setOnClickListener(this::handleNumberClick);
+        number3.setOnClickListener(this::handleNumberClick);
+        number4.setOnClickListener(this::handleNumberClick);
 
         // Implement click listeners for checkButton
-        checkButton.setOnClickListener(v -> checkArrangement(v));
-
-
+        checkButton.setOnClickListener(this::checkArrangement);
     }
 
     private List<Integer> generateNumbers() {
@@ -149,7 +147,6 @@ public class OrderNumbersActivity extends AppCompatActivity {
         String message = isCorrect ? "Congratulations! Your arrangement is correct."
                 : "Oops! The arrangement is not correct. Please try again.";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        // (implementation omitted for brevity)
     }
 
 
